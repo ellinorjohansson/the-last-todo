@@ -1,17 +1,38 @@
-import { useState, type ChangeEvent, type FormEvent } from "react"
+import { useEffect, useState, type ChangeEvent, type FormEvent } from "react"
 import { Todo } from "../models/Todo"
 import { TodoList } from "./TodoList";
 
 export const TodoApp = () => {
-    const [todos, setTodos] = useState<Todo[]>([
-        new Todo("Springa", false),
-        new Todo("Laga middag", false),
-        new Todo("Plugga", false)
-    ]);
+    const [todos, setTodos] = useState<Todo[]>([]);
 
     const [todo, setTodo] = useState<Todo>(
         new Todo("", false)
     );
+
+    const [loaded, setLoaded] = useState(false);
+
+    useEffect(() => {
+        const stored = localStorage.getItem("todos");
+        if (stored) {
+            const parsed: Todo[] = JSON.parse(stored);
+            const restored = parsed.map((t) => new Todo(t.task, t.done));
+            setTodos(restored);
+        } else {
+            setTodos([
+                new Todo("Springa", false),
+                new Todo("Laga middag", false),
+                new Todo("Plugga", false)
+            ]);
+        }
+        setLoaded(true); 
+    }, []);
+
+    useEffect(() => {
+        if (loaded) {
+            localStorage.setItem("todos", JSON.stringify(todos));
+        }
+    }, [todos, loaded]);
+
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.type === "text") {
