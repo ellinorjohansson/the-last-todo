@@ -19,9 +19,9 @@ export const TodoApp = () => {
             setTodos(restored);
         } else {
             setTodos([
-                new Todo("Springa", false),
-                new Todo("Laga middag", false),
-                new Todo("Plugga", false)
+                new Todo("Run", false),
+                new Todo("Cook dinner", false),
+                new Todo("Study", false)
             ]);
         }
         setLoaded(true); 
