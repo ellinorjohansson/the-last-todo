@@ -7,7 +7,7 @@ type TodoItemProps = {
 export const TodoItem = ({todo}: TodoItemProps) => {
     return (
         <>
-            <h2>{todo.todo}</h2>
+            <h2>{todo.task}</h2>
             <input type="checkbox" checked={todo.done} />
         </>
     )

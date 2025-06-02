@@ -1,11 +1,11 @@
 export class Todo {
     id: number;
-    todo: string;
+    task: string;
     done: boolean;
 
-    constructor(todo: string, done: boolean) {
+    constructor(task: string, done: boolean) {
         this.id = Date.now();
-        this.todo = todo;
+        this.task = task;
         this.done = done;
     }
 }
