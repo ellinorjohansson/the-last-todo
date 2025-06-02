@@ -7,10 +7,10 @@ type TodoListProps = {
 
 export const TodoList = ({todos}: TodoListProps) => {
     return (
-        <>
+        <ul>
             {todos.map((t) => (
-                <TodoItem todo={t} />
+                <TodoItem key={t.id} todo={t} />
             ))}
-        </>
+        </ul>
     )
 }
