@@ -53,21 +53,36 @@ export const TodoApp = () => {
         setTodo(new Todo("", false));
     }
 
+    const handleToggle = (id: number) => {
+    const updated = todos.map(todo =>
+        todo.id === id ? { ...todo, done: !todo.done } : todo
+    );
+        setTodos(updated);
+    };  
+
+    const activeTodos = todos.filter(todo => !todo.done);
+    const completedTodos = todos.filter(todo => todo.done);
+
+
     return (
         <>
-         <form onSubmit={handleSubmit}>
-            <label>
-                <h2>Task</h2>
-                <input type="text" id="task" value={todo.task} onChange={handleChange} />
-            </label>
-            <label>
-                <h2>Already done?</h2>
-                <input type="checkbox" id="done" checked={todo.done} onChange={handleChange} />
-            </label>
-            <button>Add Todo</button>
-         </form>
+            <form onSubmit={handleSubmit}>
+                <label>
+                    <h2>Task</h2>
+                    <input type="text" id="task" value={todo.task} onChange={handleChange} />
+                </label>
+                <label>
+                    <h2>Already done?</h2>
+                    <input type="checkbox" id="done" checked={todo.done} onChange={handleChange} />
+                </label>
+                <button>Add Todo</button>
+            </form>
 
-         <TodoList todos={todos}/>
+            <h2>ToDo List</h2>
+            <TodoList todos={activeTodos} onToggle={handleToggle} />
+            <h2>Completed ToDo</h2>
+            <TodoList todos={completedTodos} onToggle={handleToggle} />
+
         </>
     )
 }
