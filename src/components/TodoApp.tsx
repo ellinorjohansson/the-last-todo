@@ -23,6 +23,8 @@ export const TodoApp = () => {
         }
     }
 
+    console.log(todos);
+
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
 
