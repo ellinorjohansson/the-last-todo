@@ -1,6 +1,7 @@
 import { useEffect, useState, type ChangeEvent, type FormEvent } from "react"
 import { Todo } from "../models/Todo"
 import { TodoList } from "./TodoList";
+import { TodoForm } from "./TodoForm";
 
 export const TodoApp = () => {
     const [todos, setTodos] = useState<Todo[]>([]);
@@ -66,18 +67,7 @@ export const TodoApp = () => {
 
     return (
         <>
-            <form onSubmit={handleSubmit}>
-                <label>
-                    <h2>Task</h2>
-                    <input type="text" id="task" value={todo.task} onChange={handleChange} />
-                </label>
-                <label>
-                    <h2>Already done?</h2>
-                    <input type="checkbox" id="done" checked={todo.done} onChange={handleChange} />
-                </label>
-                <button>Add Todo</button>
-            </form>
-
+            <TodoForm todo={todo} onChange={handleChange} onSubmit={handleSubmit}/>
             <h2>ToDo List</h2>
             <TodoList todos={activeTodos} onToggle={handleToggle} />
             <h2>Completed ToDo</h2>
