@@ -1,0 +1,14 @@
+@import "tailwindcss";
+
+:root {
+  --butter-yellow: #fff4b8;
+  --butter-yellow-dark: #fcec90;
+  --text-dark: #333;
+  --font-family: 'Quicksand', sans-serif;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--butter-yellow);
+  color: var(--text-dark);
+}

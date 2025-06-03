@@ -67,13 +67,13 @@ export const TodoApp = () => {
     };
 
     return (
-        <>
-            <TodoForm todo={todo} onChange={handleChange} onSubmit={handleSubmit}/>
+        <div className="max-w-md mx-auto p-4 bg-yellow-50 min-h-screen">
+            <TodoForm todo={todo} onChange={handleChange} onSubmit={handleSubmit} />
             <TodoSort sortOrder={sortOrder} onSortChange={setSortOrder} />
-            <h2>ToDo List</h2>
+            <h2 className="text-lg font-semibold mt-4">ToDo List</h2>
             <TodoList todos={sortTodos(activeTodos)} onToggle={handleToggle} />
-            <h2>Completed ToDo</h2>
+            <h2 className="text-lg font-semibold mt-4">Completed ToDo</h2>
             <TodoList todos={sortTodos(completedTodos)} onToggle={handleToggle} />
-        </>
+        </div>
     )
 }
