@@ -2,6 +2,7 @@ import { useState, type ChangeEvent, type FormEvent } from "react"
 import { Todo } from "../models/Todo"
 import { TodoList } from "./TodoList";
 import { TodoForm } from "./TodoForm";
+import { TodoSort } from "./TodoSort";
 
 export const TodoApp = () => {
     const [todos, setTodos] = useState<Todo[]>(() => {
@@ -55,14 +56,27 @@ export const TodoApp = () => {
     const activeTodos = todos.filter(todo => !todo.done);
     const completedTodos = todos.filter(todo => todo.done);
 
+    const [sortOrder, setSortOrder] = useState("default");
+
+    const sortTodos = (todos: Todo[]) => {
+        switch (sortOrder) {
+            case "az":
+            return [...todos].sort((a, b) => a.task.localeCompare(b.task));
+            case "za":
+            return [...todos].sort((a, b) => b.task.localeCompare(a.task));
+            default:
+            return todos;
+        }
+    };
 
     return (
         <>
             <TodoForm todo={todo} onChange={handleChange} onSubmit={handleSubmit}/>
+            <TodoSort sortOrder={sortOrder} onSortChange={setSortOrder} />
             <h2>ToDo List</h2>
-            <TodoList todos={activeTodos} onToggle={handleToggle} />
+            <TodoList todos={sortTodos(activeTodos)} onToggle={handleToggle} />
             <h2>Completed ToDo</h2>
-            <TodoList todos={completedTodos} onToggle={handleToggle} />
+            <TodoList todos={sortTodos(completedTodos)} onToggle={handleToggle} />
 
         </>
     )
