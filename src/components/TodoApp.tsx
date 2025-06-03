@@ -23,6 +23,10 @@ export const TodoApp = () => {
         new Todo("", false)
     );
 
+    const [sortOrder, setSortOrder] = useState("default");
+
+    const activeTodos = todos.filter(todo => !todo.done);
+    const completedTodos = todos.filter(todo => todo.done);
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (e.target.type === "text") {
@@ -33,8 +37,6 @@ export const TodoApp = () => {
             setTodo({...todo, [e.target.id]: e.target.checked});
         }
     }
-
-    console.log(todos);
 
     const handleSubmit = (e: FormEvent) => {
         e.preventDefault();
@@ -47,16 +49,11 @@ export const TodoApp = () => {
 
     const handleToggle = (id: number) => {
         const updated = todos.map((t) =>
-        t.id === id ? { ...t, done: !t.done } : t
+            t.id === id ? { ...t, done: !t.done } : t
         );
         setTodos(updated);
         localStorage.setItem("todos", JSON.stringify(updated));
     };
-
-    const activeTodos = todos.filter(todo => !todo.done);
-    const completedTodos = todos.filter(todo => todo.done);
-
-    const [sortOrder, setSortOrder] = useState("default");
 
     const sortTodos = (todos: Todo[]) => {
         switch (sortOrder) {
@@ -77,7 +74,6 @@ export const TodoApp = () => {
             <TodoList todos={sortTodos(activeTodos)} onToggle={handleToggle} />
             <h2>Completed ToDo</h2>
             <TodoList todos={sortTodos(completedTodos)} onToggle={handleToggle} />
-
         </>
     )
 }

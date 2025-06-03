@@ -5,17 +5,13 @@ type TodoSortProps = {
 
 export const TodoSort = ({ sortOrder, onSortChange }: TodoSortProps) => {
   return (
-    <div>
-      <label htmlFor="sort">Sort:</label>
-      <select
-        id="sort"
-        value={sortOrder}
-        onChange={(e) => onSortChange(e.target.value)}
-      >
-        <option value="default">Standard</option>
-        <option value="az">ASC</option>
-        <option value="za">DESC</option>
-      </select>
-    </div>
+    <label>
+        <h2>Sort:</h2>
+        <select value={sortOrder} onChange={(e) => onSortChange(e.target.value)}>
+            <option value="default">Standard</option>
+            <option value="az">ASC</option>
+            <option value="za">DESC</option>
+        </select>
+    </label>
   );
 };
