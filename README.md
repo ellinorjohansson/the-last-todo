@@ -56,7 +56,7 @@ $ npm run dev
 
 ### Desktop
 
-![Screenshot desktop](/link)
+![Screenshot desktop](/src/assets/screenshot/todo_screenshot.png)
 
 ## Authors
 
