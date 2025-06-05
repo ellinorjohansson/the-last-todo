@@ -77,11 +77,11 @@ export const TodoApp = () => {
             </div>
             <h2 className="text-lg font-semibold mt-4 mb-4">ToDo List</h2>
             <div className="mb-10">
-                <TodoList todos={sortTodos(activeTodos)} onToggle={handleToggle} />
+                <TodoList todos={sortTodos(activeTodos)} onToggle={handleToggle} emptyMessage="Yey, all todos are done!" />
             </div>
             <h2 className="text-lg font-semibold mt-4 mb-4">Completed ToDo</h2>
             <div>
-                <TodoList todos={sortTodos(completedTodos)} onToggle={handleToggle} />
+                <TodoList todos={sortTodos(completedTodos)} onToggle={handleToggle} emptyMessage="No completed tasks yet." />
             </div>
         </div>
     )
